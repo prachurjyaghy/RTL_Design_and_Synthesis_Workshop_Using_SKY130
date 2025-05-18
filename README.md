@@ -22,7 +22,7 @@ The agenda of this workshop is to understand the RTL Design and Synthesis proces
 
 
 ## DAY 4: GLS blocking vs non-blocking and Synthesis-Simulation mismatch
-L1 - GLS blocking vs non-blocking and Synthesis-Simulation mismatch statements
+    L1 - GLS blocking vs non-blocking and Synthesis-Simulation mismatch statements
 
 
 ## DAY 5: Optimization in synthesis
