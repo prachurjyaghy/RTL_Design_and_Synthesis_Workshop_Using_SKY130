@@ -46,4 +46,5 @@
 
 ## Workshop details are recorded separately in THEORY and LAB SESSION files below
 --> [THEORY_SESSIONS](THEORY_SESSIONS.md)
+
 --> [LAB_SESSIONS](LAB_SESSIONS.md)
