@@ -1,8 +1,8 @@
 # DAY 1: Introduction to Verilog RTL design and Synthesis
 
-## D1SK1 - Introduction to open-source simulator iverilog
+## Introduction to open-source simulator iverilog
 
-### L1 - Introduction to iverilog design test bench
+### Introduction to iverilog design test bench
 
 
 ### Labs usign Yosys and Sky130 PDKs
@@ -22,7 +22,22 @@
   9. Simplified netlist
       ![image](https://github.com/user-attachments/assets/3f403465-5bf7-4ac0-a017-c00b206957cd)
       ![image](https://github.com/user-attachments/assets/6a707977-4219-4e43-91c6-b233b885ecbd)
+  10. Check the connections, the wires, inputs and how they are assigned in the final gate netlist
+  11. Top module is same as what we checked in the original netlist before the synthesis
+
+
+# DAY 2: Introduction to Timing .libs
+## Introduction to dot Lib
+  ![image](https://github.com/user-attachments/assets/b3b8975d-a6a3-4247-a8b7-0785fadb83d2)
+
+  1. Open the corresponding verilog for the gate
+     ![image](https://github.com/user-attachments/assets/8f955868-0d3f-43a9-a753-31e5c62afb9f)
+  2. We can check the data for the multiple conditions
+     ![image](https://github.com/user-attachments/assets/aec75d21-e395-4ed3-9b15-d8d9f963251e)
+  3. Area also increases
+     ![image](https://github.com/user-attachments/assets/92b47991-877d-4702-9d41-a563532df3ef)
      
+
 
 
 
