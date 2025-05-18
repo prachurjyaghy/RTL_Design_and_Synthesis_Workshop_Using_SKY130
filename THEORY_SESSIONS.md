@@ -39,5 +39,20 @@
     ![image](https://github.com/user-attachments/assets/71fc2178-ee53-4d5f-a0e4-f75a0e303a3a)
 
     
+# DAY 2: Introduction to timing Libs
+### Introduction to dot lib
+  1. The lib contains certain initial data for specific PVT (Process, Voltage and Temperature)
+  2. These are variations that happens in fabrication.
+  3. In order for the chip to function after fabrication, there needs to be best and worst limits where it can oprate efficiently in terms of performance and consisitency
+  4. So when designing, the libs will be characterized to mimic these PVT variations
+     ![image](https://github.com/user-attachments/assets/e094eb7a-8c00-47bd-8d49-df29dd45427b)
+     ![image](https://github.com/user-attachments/assets/67c74ed2-2880-4580-be92-7ebc3b1cef97)
+  5. Cell deifination will be provided which can be used for this PVT characteristics
+     ![image](https://github.com/user-attachments/assets/eb7cc71f-82ee-42d1-8a2d-a77187ecc44b)
+       a. Will include cell features like leakage, inputs, outputs and how the gate is paired with different logic gates
+  6. Area also changes as the bigger cells are used
+  7. Delays will also be different for the same
+  8. The Power usage also increases
+
 
 
