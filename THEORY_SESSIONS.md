@@ -54,5 +54,24 @@
   7. Delays will also be different for the same
   8. The Power usage also increases
 
+### Hierarchical vs Flat Synthesis
+  ![image](https://github.com/user-attachments/assets/21b68407-43a3-43ac-8a1f-5e93130d9355)
 
+  ![image](https://github.com/user-attachments/assets/7849219b-8ade-4a6c-a66f-73a66be80d92)
+#### Hierarchical
+  1. The modules are inside a main function and called.
+  2. The logic output can use these basic sub modules to create another logic
+  3. In the output, the required gate is not as per the original theory gates
+  4. As per Demorgan thoeram, the NAND is used as a univeersal gate
+  5. Synthesis does not want to use stacked PMOS(as it has lower mobility & if it needs to be used, then a larger cell has to be used instead)
 
+#### Flat Synthesis
+  1. We can separately can create netlist for the sub modules too
+  2. If this submodule is being now used by multiple top modules. We do not need to write them in all of the modules. It can be replicated.
+     ![image](https://github.com/user-attachments/assets/d3f23579-a943-46f9-906e-531fce7b18b7)
+  3. In yosys, synth -top <module_name> command is used
+
+### Various Flop Coding Styles and optimization
+  1. As per the input, output is going to change as per the propagation delay and may give Glitch
+  2. The glitch can be avaoided in combo circuits using flops. Since flops are edge triggered only, then the signal is preserved
+  3. We need to initialize the flop using reset / set. They can be either sync or async
