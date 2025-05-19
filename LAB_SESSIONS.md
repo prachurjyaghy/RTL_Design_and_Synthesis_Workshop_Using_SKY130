@@ -94,10 +94,11 @@
 
     1. THe output Q is going until the next clock edge and then changing
     2. The reset is getting applied only on the posedge of the clock
-    ![image](https://github.com/user-attachments/assets/3d9fa9ee-0de7-4816-8c03-ab46e75daf95)
+    ![image](https://github.com/user-attachments/assets/5a864c2a-72fa-46a8-b510-ad56028a449b)
 
     3. Reset is taking high precedence over the D as the code is written with always as priority
-    ![image](https://github.com/user-attachments/assets/4ac3ac16-10ee-43a4-953b-e04ff00ef9ee)
+    ![image](https://github.com/user-attachments/assets/336e5df5-4721-473c-ac6f-e39b38d8851a)
+
 
 
 
