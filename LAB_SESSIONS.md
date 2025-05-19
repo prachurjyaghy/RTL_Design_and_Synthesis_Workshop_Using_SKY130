@@ -1,4 +1,4 @@
-# DAY 1: Introduction to Verilog RTL design and Synthesis
+![image](https://github.com/user-attachments/assets/5bc1bb41-eaba-4898-b68b-5c8b6a35b915)# DAY 1: Introduction to Verilog RTL design and Synthesis
 
 ## Introduction to open-source simulator iverilog
 
@@ -37,6 +37,47 @@
   3. Area also increases
      ![image](https://github.com/user-attachments/assets/92b47991-877d-4702-9d41-a563532df3ef)
      
+## Hierarchical vs Flat Synthesis
+  ![image](https://github.com/user-attachments/assets/0898f993-0f32-4fc0-bc47-d432228d240f)
+
+### Hierarchical
+  1. INvoke the Yosys and read the lib
+  2. Then read the verilog
+     ![image](https://github.com/user-attachments/assets/db39c3dc-8a8d-45ef-ad3b-083ddd985df9)
+  3. Do the synth -top multiple_modules
+     ![image](https://github.com/user-attachments/assets/7ad62ed4-e644-42cc-a47d-fec375712d96)
+  4. Do the abc -liberty of the lib
+     ![image](https://github.com/user-attachments/assets/93571de6-ece2-4cf0-91d3-338afe2ee6bf)
+       -> Since there are multiple modules, need to select the submodule too 
+     ![image](https://github.com/user-attachments/assets/cd7b3001-505a-4a30-8f48-a0aa6d6ec716)
+  5. Use the below command for showing all the hierarchies
+     ![image](https://github.com/user-attachments/assets/a1733150-03dd-4b4f-9c40-dc2d853001a8)
+  6. Now get the netlist
+     ![image](https://github.com/user-attachments/assets/e2aff738-1322-4b24-91a8-02b2f3e51f96)
+     ![image](https://github.com/user-attachments/assets/798098cf-5e77-4baa-9604-e7f2af12ae8d)
+  7. In the netlist, the hierarchies are preserved
+     ![image](https://github.com/user-attachments/assets/00fc2647-5f85-480f-b17b-3c615db202ad)
+
+### Flat
+  ![image](https://github.com/user-attachments/assets/9fdfe0d0-15ce-4156-b7f4-1c678e086ad0)
+  1. Instantiation is seend directly defined under the main top multiple_module
+     ![image](https://github.com/user-attachments/assets/eeb172c6-d724-494e-986b-d480b486275f)
+  2. Now flatten it
+     ![image](https://github.com/user-attachments/assets/04151a5d-a9af-45c7-bdfe-15521ca25c72)
+     ![image](https://github.com/user-attachments/assets/f06fc628-0e7d-4802-b1ae-6d3d17513601)
+  3. Try to separate the submodules and do the synthesis
+     ![image](https://github.com/user-attachments/assets/063da6e1-3986-4a7d-a2a9-b0c16cd8acca)
+      - Submodule1
+     ![image](https://github.com/user-attachments/assets/336f86cc-684f-4866-bd58-dc1cc6f68f5d)
+
+
+
+
+
+
+
+
+
 
 
 
