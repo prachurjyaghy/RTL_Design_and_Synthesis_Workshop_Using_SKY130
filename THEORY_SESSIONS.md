@@ -75,3 +75,22 @@
   1. As per the input, output is going to change as per the propagation delay and may give Glitch
   2. The glitch can be avaoided in combo circuits using flops. Since flops are edge triggered only, then the signal is preserved
   3. We need to initialize the flop using reset / set. They can be either sync or async
+
+![image](https://github.com/user-attachments/assets/8bec6fc5-99ad-4b5c-a9d6-f1065743177e)
+  Ex: for posedge clock
+      a. Asyync means irrespective of clock
+      b. Data is set due to the async_set
+      c. Sync means it is on the D pin of the flop. It awaits for the clock edge
+      d. Upon clock posedge, the sync_reset is executed
+
+  Ex: Both async and sync reset
+  ![image](https://github.com/user-attachments/assets/1084ea7b-75be-43c3-af5c-fa93a4fffdae)
+  ![image](https://github.com/user-attachments/assets/3838660d-44f4-4561-806d-4ccd2c069795)
+
+#### Interesting optimizations
+![image](https://github.com/user-attachments/assets/b19aabc3-b3e5-4f77-94bb-7f4d164caa21)
+  1. WHen the above mult does not mean using mux but basic binary multiplication.
+  2. Simple conversion from a[2:0] to y[3:0]
+
+
+# DAY 3: Combinational and sequential optimizations  
