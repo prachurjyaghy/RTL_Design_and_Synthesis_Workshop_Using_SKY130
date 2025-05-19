@@ -70,7 +70,7 @@
       - Submodule1 
      ![image](https://github.com/user-attachments/assets/336f86cc-684f-4866-bd58-dc1cc6f68f5d)
 
-### Flop Synthesis
+### Flop Synthesis in iverilog
   
   #### Async reset
   ![image](https://github.com/user-attachments/assets/5efd0656-b739-4882-b567-5c822c3e6166)
@@ -100,9 +100,47 @@
   ![image](https://github.com/user-attachments/assets/336e5df5-4721-473c-ac6f-e39b38d8851a)
 
 
+### Yosys synthesis
+#### Async reset
+
+![image](https://github.com/user-attachments/assets/3025069b-8c5a-4a14-9352-dc40152ab076)
+  1. Looking only to the dffs
+     ![image](https://github.com/user-attachments/assets/3c32c126-71a6-4a75-b0f8-8fe76d7c6e06)
+     ![image](https://github.com/user-attachments/assets/53aa2c4f-720a-400f-9699-10f01fb06311)
+     
+  2. Inverter is used because code is written as active high reset, but flop has active low reset and the A_bar will cancel itself
+  ![image](https://github.com/user-attachments/assets/79505560-b65d-4fea-97e3-bbec690d45ea)
 
 
-  
+#### Async set
+![image](https://github.com/user-attachments/assets/daf31c29-36ae-4dfd-bbb7-21211b8c1373)
+![image](https://github.com/user-attachments/assets/3865c5e0-a564-4091-b939-83ea7753789e)
+
+#### Sync reset
+![image](https://github.com/user-attachments/assets/0d3e5293-e2d3-4ba8-8f8f-dae6d8cc5737)
+
+![image](https://github.com/user-attachments/assets/b87ecd4a-d5bb-472b-9c9c-51f7b272972e)
+
+
+### Interesting Optimizations
+#### Mult2  
+  1. Number of cells inferred is 0
+     ![image](https://github.com/user-attachments/assets/536c9e1b-64bd-4586-bd09-bf881ac34d0d)
+  2. There is nothing to create for cell
+     ![image](https://github.com/user-attachments/assets/12c4feb8-cae3-456b-a9f3-c7a403621191)
+  3. Number 'a' appended with zero
+     ![image](https://github.com/user-attachments/assets/21713c7d-46df-4e9c-85be-16c029ae383d)
+     ![image](https://github.com/user-attachments/assets/82e5956b-cd85-4889-8d4d-1168f0215f2d)
+
+#### Mult8
+  ![image](https://github.com/user-attachments/assets/3bd13e1b-f0d9-47a3-a385-ef5bb0d2c4a1)
+  ![image](https://github.com/user-attachments/assets/bd4f5599-5e90-43f4-bcac-b8045470b8b4)
+  ![image](https://github.com/user-attachments/assets/3765a3c1-2b30-4190-8eb6-5e793b6d6067)
+  1. These optimizations may not require standard cells and can be mapped using wires only
+
+
+
+# DAY 3: Introduction to Optimizations
 
 
 
