@@ -94,3 +94,16 @@
 
 
 # DAY 3: Combinational and sequential optimizations  
+
+## Optimizations 
+  1. To get the most optmized design in Area and Power
+  2. Constant propagation with direct opt
+  3. Boolean Logic Optimization using K-MAP or Quine algos
+
+Ex: Constant Propagation using transisters
+![image](https://github.com/user-attachments/assets/86b8bd7a-2595-4688-b19c-af7ce37c2b73)
+    a. As A is propagated as 0, it got optimized to inverter 
+Ex: Boolean Logic Optimization
+![image](https://github.com/user-attachments/assets/f2f6b862-3530-4c07-ac43-3de1ba4d8dca)
+    a. Reduction for the logic
+
