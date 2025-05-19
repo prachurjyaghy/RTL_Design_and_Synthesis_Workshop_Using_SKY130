@@ -67,10 +67,39 @@
      ![image](https://github.com/user-attachments/assets/f06fc628-0e7d-4802-b1ae-6d3d17513601)
   3. Try to separate the submodules and do the synthesis
      ![image](https://github.com/user-attachments/assets/063da6e1-3986-4a7d-a2a9-b0c16cd8acca)
-      - Submodule1
+      - Submodule1 
      ![image](https://github.com/user-attachments/assets/336f86cc-684f-4866-bd58-dc1cc6f68f5d)
 
+### Flop Synthesis
+  
+  #### Async reset
+  ![image](https://github.com/user-attachments/assets/5efd0656-b739-4882-b567-5c822c3e6166)
+ 
+  1. D is Q when the reset and waited for the clock edge to change the value
+     ![image](https://github.com/user-attachments/assets/9be15cb9-95eb-4ef4-966c-3b899b61bdfc)
+  2. The Q value stays equal to D as an when the clock signal posedge is received. Async is changes the value of Q to low immediately when it arrives but is not changing back due to the clock edge
+     ![image](https://github.com/user-attachments/assets/74d2da57-d1bd-4927-a8b6-1a7fa3397cfc)
 
+  #### Async set  
+  ![image](https://github.com/user-attachments/assets/dec4ff5a-3951-4955-b97d-4e314d1bcae6)
+
+  1. The changes in the D pin upon the edge of the clock. Set is enabled, the Q was 0.
+  2. Now as and when the clock edge changes, the D value changes the value of Q as well
+     ![image](https://github.com/user-attachments/assets/ad27104f-3d2c-49da-a880-31417ac44e2c)
+  3. Now whenn the sync is set, irrespective of clock, it is keeping the Q value as 1. D is not effected
+     ![image](https://github.com/user-attachments/assets/ae118e05-7aa1-476b-ad24-6b06387530c1)
+
+  #### Sync reset
+  ![image](https://github.com/user-attachments/assets/7c7cba21-fb9a-4f42-9885-59629ae57b3c)
+
+    1. THe output Q is going until the next clock edge and then changing
+    2. The reset is getting applied only on the posedge of the clock
+    
+    3. Reset is taking high precedence over the D as the code is written with always as priority
+    
+
+
+  
 
 
 
