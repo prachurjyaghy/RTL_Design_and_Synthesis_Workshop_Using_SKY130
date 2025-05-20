@@ -106,4 +106,4 @@ Ex: Constant Propagation using transisters
 Ex: Boolean Logic Optimization
 ![image](https://github.com/user-attachments/assets/f2f6b862-3530-4c07-ac43-3de1ba4d8dca)
     a. Reduction for the logic
-
+### Sequential optimizations
