@@ -142,6 +142,41 @@
 
 # DAY 3: Introduction to Optimizations
 
+## Combinational Logic
+  ![image](https://github.com/user-attachments/assets/8f7a70c9-15fd-4bdd-a525-e86ca2e8acae)
+
+  1. Follow the same process for synthesis in yosys
+     ![image](https://github.com/user-attachments/assets/d2902a05-4676-4e9c-9ce5-1b46be1b13bc)
+  2. Now for the propagation delay and optimization in yosys
+     ![image](https://github.com/user-attachments/assets/b790e855-d410-464a-b4e1-94c51997cfc5)
+     ![image](https://github.com/user-attachments/assets/61023e47-db9a-4e8d-b8c7-380ccd80c297)
+  3. Check the result to find the AND gate
+     ![image](https://github.com/user-attachments/assets/8d8f6e59-3fc2-4cfe-a267-fd46b93c7f9e)
+  4. Now check the same for the opt_check2
+     ![image](https://github.com/user-attachments/assets/34b92e08-6e71-498a-98d6-ae20ec240704)
+
+  5. Check the same for opt_check3 doing the whole synthesis process
+     ![image](https://github.com/user-attachments/assets/55c3cef2-8084-4556-8283-d1c5fd8ce5c5)
+  6. Multiopt. Needed to flatten the design
+     ![image](https://github.com/user-attachments/assets/9fc8b9f1-29a2-408b-bc4b-42902582a417)
+
+     ![image](https://github.com/user-attachments/assets/d59a4898-4f13-44c3-8def-173a4fee2601)
+
+
+  ## Sequential Optimization
+  ![image](https://github.com/user-attachments/assets/7d4ff4b1-2f4b-4824-9a8c-db292c406bf1)
+    1. dff lib map is used for the library that needs to be used
+    2. Execute the netlist exactly like the way in combo opt process
+       ![image](https://github.com/user-attachments/assets/26746b23-17e2-4e21-b55c-a6b495614c7f)
+       ![image](https://github.com/user-attachments/assets/f5f25402-1e91-4958-a596-90ad5741ab45)
+
+    3. Check the output
+  ![image](https://github.com/user-attachments/assets/45ba57fa-da1f-4719-8c16-633bf8a9f944)
+    
+    4. Library is expecting an active low reset, but it is codded as active high. So inverter is used before the flop
+    
+
+
 
 
 
