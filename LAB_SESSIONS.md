@@ -321,6 +321,11 @@ This is clearly synth-sim mismatch and caused by blocking statement
 
 
 
+# DAY 5: Optimization in Synthesis
+## If Case constructs
+
+
+
 
 
 
