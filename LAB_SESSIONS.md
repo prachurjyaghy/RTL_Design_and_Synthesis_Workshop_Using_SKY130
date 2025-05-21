@@ -182,6 +182,67 @@
    ![image](https://github.com/user-attachments/assets/14099038-a8ac-4683-9b47-52b401320e72)
 
 
+  Ex: dff_const3
+  ![image](https://github.com/user-attachments/assets/5659947a-bf85-4b45-9095-d15e939ed13c)
+
+    1. Upon reset, Q = 1 and Q1 = 0. Then the Q1 does not change after the reset
+    2. The output Q will be high except for 1 clock cycle. This makes the circuit unpotimized
+  Check this in iverilog
+  ![image](https://github.com/user-attachments/assets/881f03c5-534e-4467-ad5f-83afafbc7915)
+  ![image](https://github.com/user-attachments/assets/7aa6df5a-8654-42dc-ab2a-6e442e5202f9)
+
+  In yosys:
+  ![image](https://github.com/user-attachments/assets/dc6a6842-692f-4526-a3d9-f5f676f2ce20)
+    a. dff cells are taken
+  ![image](https://github.com/user-attachments/assets/b9f2be30-312f-4de9-a9d3-70ab89bb53f7)
+
+  ![image](https://github.com/user-attachments/assets/37691449-597f-453b-a896-8f1589f2cd98)
+    a. Mapped inverter and used flops
+    b. Output check
+    ![image](https://github.com/user-attachments/assets/70c892f8-ff0e-4e46-863f-9f29720ce05a)
+
+  NOTE: 
+      i. When show is done without abc -liberty, then bth were connected to reset. Now it is properly connected as per the logical connection
+      ii. For set and reset, inverter is used
+
+    3. Not every constant connection in dff will be optimized
+
+
+    Ex: dff_const_4
+  ![image](https://github.com/user-attachments/assets/78f99172-1a2b-454c-862d-afaa6b10237f)
+
+    In iverilog:
+  ![image](https://github.com/user-attachments/assets/74a0d92b-3199-4f18-8a97-98aa1a24d7a7)
+      a. When the reset goes to zero, the q and q1 stays the same uneffected by the reset
+
+    In Yosys:
+  ![image](https://github.com/user-attachments/assets/92ae4fef-dbcb-41a9-b1d3-1a2db7457ef3)
+      a. Zero cells used for optimization
+    ![image](https://github.com/user-attachments/assets/b994c380-5654-4b8c-912c-4096a6ba982a)
+      b. After abc -liberty also the optimization remains the same
+
+    Ex: dff_const5
+  ![image](https://github.com/user-attachments/assets/501841c1-0859-44cd-83d1-19206036e6c0)
+
+    In iverilog:
+  ![image](https://github.com/user-attachments/assets/80ee0b1d-3184-4bdc-83e6-323eeecc5d57)
+      a. When the reset is 0, there is no change in the Q and Q1 values.
+      b. Only when the clock edge changes, Q1 is 1
+      c. And when the clock has completed one cycle, the Q value is 1
+      b. After this, both the Q and Q1 values stay constant
+
+    In Yosys:
+   ![image](https://github.com/user-attachments/assets/0cdb3c1c-f032-40b8-8434-7933cdf133e5)
+      a. 2 flops are syntheszed
+    ![image](https://github.com/user-attachments/assets/78eb1ce9-fd26-4584-b6da-c489cf6e79d6)
+    ![image](https://github.com/user-attachments/assets/65c3a429-e619-47b9-bef7-8a8cc7937ae5)
+      b. Outputs synthesized as seen in iverilog
+
+
+
+      
+
+
 
 
 
