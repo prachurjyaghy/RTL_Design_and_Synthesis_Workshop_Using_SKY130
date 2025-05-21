@@ -5,7 +5,7 @@
 ### Introduction to iverilog design test bench
 
 
-### Labs usign Yosys and Sky130 PDKs
+### Labs using Yosys and Sky130 PDKs
   1. Launch Yosys in verilog_files directory
   2. Now read the lib and the netlist for the good_mux
   3. The top module is good_mux which reads it from the netlist
@@ -239,9 +239,28 @@
       b. Outputs synthesized as seen in iverilog
 
 
+  ## Sequential optimization with unused outputs
+  Ex: Counter opt
+  ![image](https://github.com/user-attachments/assets/75d8f316-49b2-4181-8088-ab1b91f0c471)
 
-      
+  In iverilog:
+  ![image](https://github.com/user-attachments/assets/ce2daea1-4b34-4df8-8b45-8159acd0e1cd)
+    1. The toggling of Q continues as the clock cycle gets completed
 
+  In Yosys:
+    1. Inferring only 1 flop but it has three bit count and should have had 3 flops
+  ![image](https://github.com/user-attachments/assets/5ffae940-2c70-4f61-b287-8dd57a6b342f)
+    
+    2. Toggling is happening and the unused outputs are optimized
+  ![image](https://github.com/user-attachments/assets/f4d7b6ab-9a88-469b-a22e-1a7af4e748c0)
+    
+  Ex: Count opt 2 with 3 bits as counter value
+  ![image](https://github.com/user-attachments/assets/a6522ee4-3520-4529-8fd1-593615d8e407)
+
+    1. Able to see the 3 DFF after synth
+  ![image](https://github.com/user-attachments/assets/14e35bc0-0f04-4622-96e6-b590ce63b56c)
+    2. Output with 3 DFFs
+  ![image](https://github.com/user-attachments/assets/762793fc-3784-4ad0-be6c-34aaac44ba89)
 
 
 
