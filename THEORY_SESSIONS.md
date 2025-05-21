@@ -106,4 +106,80 @@ Ex: Constant Propagation using transisters
 Ex: Boolean Logic Optimization
 ![image](https://github.com/user-attachments/assets/f2f6b862-3530-4c07-ac43-3de1ba4d8dca)
     a. Reduction for the logic
+
 ### Sequential optimizations
+
+
+### Unused sequential opt
+  1. As the counter goes on, the unused bits in the design which were not connected to primary output, has been optimized. There could be more than one outputs which are unused
+  2. For the count having 3 bits, 3 DFFs are used
+  3. Now the output Q = count[2].count[1]_bar.count[0]_bar
+     ![image](https://github.com/user-attachments/assets/816c60f5-e120-4b1f-a456-455ddd58a5eb)
+  4. In the previous sequential opt, only count[0] was used and other bits were not used. Synthesis tool will optimize it completely.
+  5. All the other logics are visible now because the count bit increased, so to optimize it required additional gates for the final opt
+     ![image](https://github.com/user-attachments/assets/1a8bfbb6-4bf3-489d-b51c-00b71c4d4267)
+
+
+# DAY 4: Gate Level, blocking vs non-blocking and Synthesis simulation mismatch
+
+## Gate Level Simulation
+![image](https://github.com/user-attachments/assets/982a6f87-5806-481c-a4ac-b8a5cd4b0401)
+
+  1. Running test bench with netlist as Design Under Test. Originally, RTL netlist was the DUT.
+  2. Logically it is the same and will also align with the TestBench
+  3. This is to verify logical correctness of design after synthesis and ensure timing of the design is met (GLS needs to be run with delay annotation)
+  4. Gate level verilog models will consist of the standard cell defined in them already as we have synthesized it and validate the functionality
+
+NOTE: Delay annotation: Gate Level Verilog Models has to be timing aware for correct simulation and output
+
+
+## Synthesis Simulation mismatch
+
+### Missing Senstivity List
+  1. In verilog code, the simualtor works based on the activity. i.e, output will change only when the input changes
+  2. Ex: For a select pin change with always@(sel), if input is 0, y -> i0 and vice versa.
+  3. The always part is not dependent on the input data, so only when there is a change in select data, the always block will get evaluated
+  4. Now when always@(*) is given, the always will be evaluated in any signal change (i.e. inputs or sel)
+  5. When synthsiszed, it will not check the sensitivity and do only the functionality and will create MUX
+  6. So we will have mismatch for this
+
+
+## Blocking and non-blocking statements in verilog
+
+### Blocking (=)
+  1. Executes statements in the order that it is written
+  2. So the first statement is evaluated before the second statement
+
+### Non-blocking (<=)
+  1. Executes all the RHS when always block is entered and assignes to LHS
+  2. Does parallel evaluation for multiple assignments. Ex: a<= b&c; and others, it will do the calculation and then assign the final value
+  3. Order of statement execution does not matter
+
+### Caveats with Blocking Statements
+  Ex: Create shift register
+  ![image](https://github.com/user-attachments/assets/71693d55-37fb-4b49-9198-d23ca635525e)
+    1. IN the first if loop, the q and q0 is assigned to 0 , i.e. reset
+    2. In the else loop, q assigned to q0 and q0 assigned to d
+    3. Here, q has the value of q0, only then q0 will have d
+    4. By the time, q0 is assigned to d, it already has the value of d and is using only 1 flop
+    
+  Ex: Incase the assignment order is changed
+  ![image](https://github.com/user-attachments/assets/857d52f2-e74c-4eb8-b3bb-2533cadfffc7)
+    1. Here d is already assigned to q0 and then q0 is assigned to q, the q0 already has data of d
+
+  NOTE: Use non-blocking for writing sequential circuits
+
+
+  Ex: Synth Simulation mismatch
+   ![image](https://github.com/user-attachments/assets/84dfb5ac-86e6-4bbb-b325-46fe907f12dc)
+
+    1. Using blocking statement, assigning y to q0 and c and then q0 assigned to a|b.
+    2. Only when always is executed, the q0 value is updated, or else it is taking the old value
+    3. This will mimic a delay or flop
+    When this is synthesiszed, there will ne no flop
+    4. Now if order is changed
+   ![image](https://github.com/user-attachments/assets/21cb4bf5-cbec-4022-b17e-96c6120e3d7d)
+       a. q0 is evaluated first when always entered
+       b. Now for y assigning, latest value of q0 is used in simulation
+       c. Now if synthesized, it will do the same circuit as the ORANF gate
+    5. Because of this mismtach of these issues, we need to run the GLS
