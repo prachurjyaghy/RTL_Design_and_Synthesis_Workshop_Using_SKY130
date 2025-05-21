@@ -174,7 +174,13 @@
   ![image](https://github.com/user-attachments/assets/45ba57fa-da1f-4719-8c16-633bf8a9f944)
     
     4. Library is expecting an active low reset, but it is codded as active high. So inverter is used before the flop
-    
+
+    5. Check for the dff_const2 which has the following data already mapped
+   ![image](https://github.com/user-attachments/assets/0897e7b9-d303-4a65-9842-4aa307276b46)
+
+    6. Check the output as the cells for dff is not synthesized as the value is already constant
+   ![image](https://github.com/user-attachments/assets/14099038-a8ac-4683-9b47-52b401320e72)
+
 
 
 
