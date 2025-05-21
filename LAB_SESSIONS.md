@@ -264,6 +264,71 @@
 
 
 
+# DAY 4: GLS, Blocking vs Non-Blocking and Synthesis Simulation Mismatch
+
+## GLS and Synthesis Simulation Mismatch
+Files to execute and check for GLS
+![image](https://github.com/user-attachments/assets/bd90b445-f70d-425f-828c-643c0cc2deeb)
+
+### Ex: Ternary operator:
+#### In iverilog
+  Behaves as a 2:1 MUX
+  ![image](https://github.com/user-attachments/assets/3bbe1da0-bd00-4314-aa05-69c4f65cf810)
+#### In Yosys
+![image](https://github.com/user-attachments/assets/a0cd4460-f435-48b5-9898-d25974c600d2)
+![image](https://github.com/user-attachments/assets/50b04537-b876-41a2-a2ea-b2f247b4cd28)
+
+#### In GLS
+![image](https://github.com/user-attachments/assets/6c83109c-7228-44c4-9b80-608bb42624b0)
+Load the gate netlist in iverilog
+![image](https://github.com/user-attachments/assets/ee798d00-6cf7-4a6f-944b-d4c142792f05)
+![image](https://github.com/user-attachments/assets/9420d625-ab4c-48d7-bf6f-99f729df8e65)
+
+### Ex: Bad MUX
+  1. Deliberately, as always(sel) will only execute for sel and behave like flop
+#### In iverilog and gtkwave
+  1. i0 is not changing with respect to sel and toggling, so Y is 1
+  2. Only when sel is changing, Y changes
+     ![image](https://github.com/user-attachments/assets/ee02684a-2b68-48ae-95fe-be72085c082c)
+
+#### In Yosys
+![image](https://github.com/user-attachments/assets/f2a177cd-885d-4450-99c4-51077ff654c4)
+
+#### In GLS
+![image](https://github.com/user-attachments/assets/51e4149f-4123-449a-bc26-4d5ca9284706)
+![image](https://github.com/user-attachments/assets/cf10aba7-6e50-4e75-85a9-fb4c3204dec1)
+
+
+### Ex: Blocking caveat
+![image](https://github.com/user-attachments/assets/29454667-43e3-4465-919c-ad5e4080442f)
+
+#### In iverilog
+Previous data of d is old when the toggling happens
+![image](https://github.com/user-attachments/assets/b0d39228-ef67-4897-87b3-fffab9168473)
+![image](https://github.com/user-attachments/assets/6aa5e35a-fa17-424f-9d4e-10f0f1ef14e0)
+![image](https://github.com/user-attachments/assets/208766c2-0c3f-436d-819d-79c3607eb89e)
+
+
+#### In  Yosys
+![image](https://github.com/user-attachments/assets/4b228059-1e50-43dd-a094-493c0bdd2d0e)
+![image](https://github.com/user-attachments/assets/ad48b646-8c56-42bb-a7e3-2da993203131)
+
+#### In GLS
+![image](https://github.com/user-attachments/assets/495b45eb-036a-4632-987c-339e9ff0f70f)
+This is clearly synth-sim mismatch and caused by blocking statement
+![image](https://github.com/user-attachments/assets/b5c3841e-63cd-4a1b-b060-808e7fcebb63)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
