@@ -324,7 +324,71 @@ This is clearly synth-sim mismatch and caused by blocking statement
 # DAY 5: Optimization in Synthesis
 ## If Case constructs
 
+  1. If statement always translates into a MUX
+     
+### Incomplete If
+  ![image](https://github.com/user-attachments/assets/37bfdcf2-9f8a-4583-a15a-c6a4a91f644d)
 
+  1. Since else condition is not given, it will behave like D-Latch
+
+#### In iverilog
+![image](https://github.com/user-attachments/assets/59f73afe-9087-4797-9838-964151dada73)
+  1. Whenever, i0 is high, Y changes and vice-versa
+  2. When i0 goes low, Y latches on the previous data and doesnot change
+
+
+#### In Yosys
+![image](https://github.com/user-attachments/assets/3d134afc-2c9a-408b-aaf0-c62934536b00)
+  1. Aim was to code a MUX, but tool gave a latch instead
+![image](https://github.com/user-attachments/assets/c1ed7cc6-86fb-4c12-a285-52684fc3f35f)
+  2. i2 is unused, i0 is en and i1 is D pin just like latch
+
+### Incomplete If 2
+![image](https://github.com/user-attachments/assets/356c0203-3d92-41c2-b55c-916066a7c41c)
+  1. Else condition is not given and the condition will latch onto Y and keep the previous value
+
+#### In iverilog
+![image](https://github.com/user-attachments/assets/db5cb2bf-63d6-41ab-b1bd-2c453829639e)
+
+  1. When i0 is high, Y = i1
+  2. WHen i1, i0 is low, output is constant
+  3. When i2 is high, it follows i3
+
+#### In Yosys
+![image](https://github.com/user-attachments/assets/8b3d2f05-e254-47a8-abb4-6476e8d8840a)
+![image](https://github.com/user-attachments/assets/c24f0564-ae6f-4f2c-8d63-d36ae511ce39)
+
+
+### Incomplete Case
+  1. Select is a 2 -bit signal
+  2. Since the default is not added, it will latch
+
+#### In iverilog
+  1. When sel[1] = 1, value is latch. otherwise it should be not used
+    ![image](https://github.com/user-attachments/assets/bbb75fad-12f0-4d57-b34c-d437c3343238)
+
+  2. When sel[0], it follows i0
+    ![image](https://github.com/user-attachments/assets/517bd245-42db-4457-8eaf-e7177a2f3d89)
+
+#### In Yosys
+![image](https://github.com/user-attachments/assets/cad32b2c-d523-4ad0-9408-ec6af5b4617f)
+![image](https://github.com/user-attachments/assets/8b182538-e6b6-47f3-8782-f5b649bb7678)
+
+
+
+### Complete Case
+![image](https://github.com/user-attachments/assets/88311982-59af-402a-a7b2-a722b67eebb3)
+  1. Has default
+
+#### In iverilog
+![image](https://github.com/user-attachments/assets/728fbb71-ad61-44bc-adb8-1569c837b35f)
+  1. The inputs behave as intended
+
+#### In Yosys
+![image](https://github.com/user-attachments/assets/3770f031-9c66-42c2-8298-d1e2c2ec6e8c)
+![image](https://github.com/user-attachments/assets/ae1ee0e5-fd28-4018-891c-6984e01c62dd)
+  1. Even with default case, inferred latech cannot be completely avoided
+  2. When sel[0]&sel[1] both = 1
 
 
 
