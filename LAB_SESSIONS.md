@@ -390,6 +390,35 @@ This is clearly synth-sim mismatch and caused by blocking statement
   1. Even with default case, inferred latech cannot be completely avoided
   2. When sel[0]&sel[1] both = 1
 
+### Partial case
+#### In Yosys
+![image](https://github.com/user-attachments/assets/68abbdfc-77b2-45b1-a279-e72809a03fe2)
+![image](https://github.com/user-attachments/assets/e16ef474-6cb6-4dac-94de-f6558fd77a7c)
+
+
+### Bad case
+![image](https://github.com/user-attachments/assets/e44eae2f-c22e-46c7-b0b2-7ee959c1b8d5)
+  1. When sel[0]/ sel[1] , can can get the y value
+  2. Now when for one output, multiple data is written, overlas occur
+  3. Since there are no missing cases, it will not cause any inferred latches
+
+#### In iverilog
+![image](https://github.com/user-attachments/assets/bc3723e5-9c04-4095-be22-f1f613960b3c)
+
+
+#### In Yosys
+![image](https://github.com/user-attachments/assets/488b35df-afac-451b-aa6b-9598eb011ef9)
+![image](https://github.com/user-attachments/assets/8f70f6cd-02fc-4252-9016-6142f9ab33d3)
+
+#### In GLS
+![image](https://github.com/user-attachments/assets/d20e6812-16eb-464c-9e51-b7983c7e5c23)
+![image](https://github.com/user-attachments/assets/6f8cb735-e65b-4ae6-bf66-e26f661afa1e)
+  1. Data is getting update in Y as per the expectation for the inputs
+
+
+
+
+
 
 
 
