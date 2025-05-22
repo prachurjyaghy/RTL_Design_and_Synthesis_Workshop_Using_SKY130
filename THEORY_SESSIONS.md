@@ -219,3 +219,20 @@ NOTE: Delay annotation: Gate Level Verilog Models has to be timing aware for cor
   3. It acts like a MUX
 
 #### Cautions for Case
+  Incomplete Case
+  ![image](https://github.com/user-attachments/assets/4872a042-1484-4f4f-841e-2b363d47d0fc)
+
+  1. Incomplete cases can cause Inferred latches
+  2. For 2-bit select condition, if switch is provided for only 2 bits only, then the rest inputs will need to be assigned with default case
+  3. With default case we avoid inferred latches
+
+  Partial assignments in Case
+  ![image](https://github.com/user-attachments/assets/7e101ba7-f59f-4020-b0d8-63e381935227)
+
+  1. When sel is 0, x = a & y = b; when sel is 1, x = c, but no y assigned in the case statement
+  2. Always assign all the outputs in all the segments of case
+
+### Comparison of If and Case
+  1. In If, priority is defined by if, else if and else. Only one can be executed
+  2. But in case for each variable value, if MSB is given and LSB is not defined, it will go to unpredictable output. And code is executed from top to bottom flow by checking conditions of each case. Should not have overlapping cases
+  3. 
