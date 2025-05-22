@@ -183,3 +183,39 @@ NOTE: Delay annotation: Gate Level Verilog Models has to be timing aware for cor
        b. Now for y assigning, latest value of q0 is used in simulation
        c. Now if synthesized, it will do the same circuit as the ORANF gate
     5. Because of this mismtach of these issues, we need to run the GLS
+
+
+
+# DAY 5: Optimization in synthesis
+## If Case constructs 
+### If Statement
+![image](https://github.com/user-attachments/assets/c6799787-9cab-4e6b-9b8a-db537932a112)
+
+  1. If is used for priority logic
+  2. Will consist of begin and end statements
+  3. Hardware design will be based on the condition of the loop. It will act mostly like a MUX but with multiple conditions connected to the original input signal to pass through
+
+#### Cautions for If
+![image](https://github.com/user-attachments/assets/de6cf8c2-51df-434d-99f5-f7081810e891)
+
+  1. If we get "Inferred Latches"
+  2. This has incomplete if statement with no final else code. Using only if and if else only
+  3. The latch will store the value and will be driven to the input again
+  4. This is a combinational circuit and this behaviour is not acceptable
+
+#### Counter
+![image](https://github.com/user-attachments/assets/312be6ed-1d2a-4820-a9ba-24182c884337)
+
+  1. Will include a always block
+  2. When the "en" condition is fulfilled, then count is increased by 1
+  3. If no "en" count is available, it will latch on to the previous value
+  4. This is a intended behaviour in sequential circuit
+
+### Case Statement
+![image](https://github.com/user-attachments/assets/f02aab49-745b-48a5-88df-d050027da61c)
+
+  1. Any value being assigned should be a register variable only
+  2. Will include a always block to evaluate all the inputs and contain begin and end and end with 'endcase'
+  3. It acts like a MUX
+
+#### Cautions for Case
