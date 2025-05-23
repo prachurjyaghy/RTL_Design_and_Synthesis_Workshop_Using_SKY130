@@ -33,9 +33,10 @@
     2. Includes basic logic gates with different flavours of same gate
     3. Ex: NAND and NOR unversal logic gates can be used to implement boolean logics
     4. Why Flavours required: Combo delay in logic path determins the max speed of operation of digital logic circuit
-    SETUP: 
-       a. Clock cycle needs to accomodate the propagation delay, combo delay and setup slack
   ![image](https://github.com/user-attachments/assets/b590369a-5599-4321-90f2-4aa8cfde7e9b)
+    
+    SETUP: 
+       a. Clock cycle needs to accomodate the propagation delay, combo delay and setup slack     
        b. For maximum performance, we need the cells faster for Setup 
     HOLD:
        a. Now for data to be held at the launch side for the data to be reliably captured. 
@@ -46,6 +47,7 @@
        c. This changes according to the technology nodes for optimizing area, power.
     6. Now to guide the synthesis to pick up the required transistors, we need constraints
     7. Below shows how a basic conversion looks like
+  
   ![image](https://github.com/user-attachments/assets/71fc2178-ee53-4d5f-a0e4-f75a0e303a3a)
 
     
@@ -57,12 +59,15 @@
   3. In order for the chip to function after fabrication, there needs to be best and worst limits where it can oprate efficiently in terms of performance and consisitency
   
   4. So when designing, the libs will be characterized to mimic these PVT variations
+
      ![image](https://github.com/user-attachments/assets/e094eb7a-8c00-47bd-8d49-df29dd45427b)
      ![image](https://github.com/user-attachments/assets/67c74ed2-2880-4580-be92-7ebc3b1cef97)
   
   5. Cell deifination will be provided which can be used for this PVT characteristics
+
      ![image](https://github.com/user-attachments/assets/eb7cc71f-82ee-42d1-8a2d-a77187ecc44b)
-       a. Will include cell features like leakage, inputs, outputs and how the gate is paired with different logic gates
+
+     a. Will include cell features like leakage, inputs, outputs and how the gate is paired with different logic gates
   6. Area also changes as the bigger cells are used
   7. Delays will also be different for the same
   8. The Power usage also increases
@@ -83,6 +88,7 @@
 #### Flat Synthesis
   1. We can separately can create netlist for the sub modules too
   2. If this submodule is being now used by multiple top modules. We do not need to write them in all of the modules. It can be replicated.
+
      ![image](https://github.com/user-attachments/assets/d3f23579-a943-46f9-906e-531fce7b18b7)
   
   3. In yosys, synth -top <module_name> command is used
@@ -93,6 +99,7 @@
   3. We need to initialize the flop using reset / set. They can be either sync or async
 
 ![image](https://github.com/user-attachments/assets/8bec6fc5-99ad-4b5c-a9d6-f1065743177e)
+  
   Ex: for posedge clock
       a. Asyync means irrespective of clock
       b. Data is set due to the async_set
@@ -100,11 +107,13 @@
       d. Upon clock posedge, the sync_reset is executed
 
   Ex: Both async and sync reset
+  
   ![image](https://github.com/user-attachments/assets/1084ea7b-75be-43c3-af5c-fa93a4fffdae)
   ![image](https://github.com/user-attachments/assets/3838660d-44f4-4561-806d-4ccd2c069795)
 
 #### Interesting optimizations
 ![image](https://github.com/user-attachments/assets/b19aabc3-b3e5-4f77-94bb-7f4d164caa21)
+  
   1. WHen the above mult does not mean using mux but basic binary multiplication.
   2. Simple conversion from a[2:0] to y[3:0]
 
@@ -117,10 +126,15 @@
   3. Boolean Logic Optimization using K-MAP or Quine algos
 
 Ex: Constant Propagation using transisters
+
 ![image](https://github.com/user-attachments/assets/86b8bd7a-2595-4688-b19c-af7ce37c2b73)
+    
     a. As A is propagated as 0, it got optimized to inverter 
+
 Ex: Boolean Logic Optimization
+
 ![image](https://github.com/user-attachments/assets/f2f6b862-3530-4c07-ac43-3de1ba4d8dca)
+    
     a. Reduction for the logic
 
 ### Sequential optimizations
@@ -131,23 +145,27 @@ Ex: Boolean Logic Optimization
   2. The Q value goes to the gate which becomes a.0_bar = a_bar + o_bar = a_bar+1 = 1. Y = 1 always
   3. Id set is connected to the flop and the logic remains same for the gate
      ![image](https://github.com/user-attachments/assets/73f02dfe-e81a-40e0-9359-a10d1cc27bfd)
+
        a. When set is applied, Q = 1.
        b. When set is not applied and clock is applied, Q = 0. Q value becomes unpredictable
        c. Q cannot be set_bar, because:
            i. When set goes zero, Q does not follow the data
            ii. It will wait for the next clock edge data of D, then Q goes to zero and creates a clock cycle zero as it is in sync with clock
          ![image](https://github.com/user-attachments/assets/5445036d-0061-454d-8d81-f16e3e836698)
+
        d. For a flop to become sequential constant it needs to be retained
 
-  4. Other concepts like state opt, cloning, retiming
+  5. Other concepts like state opt, cloning, retiming
 
 ### Unused sequential opt
   1. As the counter goes on, the unused bits in the design which were not connected to primary output, has been optimized. There could be more than one outputs which are unused
   2. For the count having 3 bits, 3 DFFs are used
   3. Now the output Q = count[2].count[1]_bar.count[0]_bar
      ![image](https://github.com/user-attachments/assets/816c60f5-e120-4b1f-a456-455ddd58a5eb)
+  
   4. In the previous sequential opt, only count[0] was used and other bits were not used. Synthesis tool will optimize it completely.
   5. All the other logics are visible now because the count bit increased, so to optimize it required additional gates for the final opt
+
      ![image](https://github.com/user-attachments/assets/1a8bfbb6-4bf3-489d-b51c-00b71c4d4267)
 
 
