@@ -235,4 +235,67 @@ NOTE: Delay annotation: Gate Level Verilog Models has to be timing aware for cor
 ### Comparison of If and Case
   1. In If, priority is defined by if, else if and else. Only one can be executed
   2. But in case for each variable value, if MSB is given and LSB is not defined, it will go to unpredictable output. And code is executed from top to bottom flow by checking conditions of each case. Should not have overlapping cases
-  3. 
+
+
+## Looping constructs
+  1. As complexity increases with bit increase and the level of logic increases, it gets difficult to write with normal statement being assigned to each and every data bit
+  2. For data to be read faster and efficiently, loops are the best way to execute
+     
+### For Loop
+  1. Inside for loop
+  2. Used for evaluating expressions and not for instantiating hardware
+  3. We can do this for 256 bit as well, just need to change the last read bit
+
+```ruby
+  interger i
+    always@(*)
+    begin
+      for (i=0; i<32; i=i+1)
+        begin if (i==sel)
+          y=inp[i];
+        end
+    end
+```
+
+Ex: Instantiate DEMUX for 1x8
+```ruby
+interger i;
+always@(*)
+  begin
+    op_bus[7:0]=8'b0;
+    for(i=0; i<8; i=i+1)
+      begin
+        if(i==sel)
+          op_bus[i]=input
+      end
+  end
+```
+
+### Generate for loop
+  1. Cannot be used inside always block and should be used outside it
+  2. Used for instantiating hardware and replicating the hardware
+
+Ex: Instantiate 8 AND gates
+
+![image](https://github.com/user-attachments/assets/c099ddb3-a5b7-4076-916e-aaa7d71d28a8)
+
+```ruby
+  genvar i;
+    generate
+      for(i=0;i<8;i=i+1)begin
+        and u_and (.a(in1[i]), .b(in2[i]), .y(y[i]));
+      end
+    endgenerate
+```
+
+Ex: Ripple carry adder (Multiple Full Adder which gives carry and sum)
+  
+![image](https://github.com/user-attachments/assets/e8410c41-86c3-4b23-963e-d60d5214a79d)
+
+```ruby
+  genvar i;
+    generate
+      for(i=0;i,8;i=i+1)begin
+        fulladd u_fulladd (.a(
+
+  
