@@ -4,7 +4,20 @@
 
 ### Introduction to iverilog design test bench
 
-#### Simulator
+![image](https://github.com/user-attachments/assets/1ffa8a15-3d9e-47c3-89a3-566f9c0b39e1)
+
+  1. Tool used to check the design of the RTL design
+  2. iverilog used for RTL design check
+  3. Design is the actual verilog code where the intended functionality has to meet the required specifications
+  4. TestBench is the setup to apply test vectors to the design to check its functionality
+  5. Simulator looks for change in the value of input and generates thr stimulas in the output
+
+  ![image](https://github.com/user-attachments/assets/81a91be6-f6de-4d84-829d-dd8a8be179d1)
+
+  6. Design may have more than 1 primary inputs/ outputs
+  7. TB(TestBench) does not have a primary input or output
+  8. Output of a simulator is a VCD file (Value Change Dump)
+  9. Gtkwave tool will be used to view and verify the functionality of the netlist
 
 ### Introduction to Yosys
 
@@ -15,7 +28,7 @@
 ![image](https://github.com/user-attachments/assets/6d9e87a1-bbe2-41ea-824d-d37f224bd348)
   
   1. Stimulus to be same as output observed during TRL simulation
-  2. The set of Promiary inputs / primary outputs will remain same between RTL design and Sythesiszed netlist. So same Test Bench can be used for RTL Test Bench
+  2. The set of Primary inputs / primary outputs will remain same between RTL design and Sythesiszed netlist. So same Test Bench can be used for RTL Test Bench
 
 ### Logic Synthesis
 
